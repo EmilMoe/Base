@@ -36,7 +36,7 @@
         },
         "emilmoe": {
             "autoloader": [
-                "emilmoe/base/src/resources/js",
+                "emilmoe/base/src/resources/js"
             ]
         }
     }
