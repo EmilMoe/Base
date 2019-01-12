@@ -21,6 +21,12 @@
                 @endif
             @endif
 
+            @if(View::exists('EmilMoe\Navigation::top'))
+                @if (! isset($menu) || $menu === true)
+                    @include('EmilMoe\Navigation::top')
+                @endif
+            @endif
+
             <main>
                 @yield('page')
             </main>
