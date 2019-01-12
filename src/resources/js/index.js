@@ -6,4 +6,4 @@
 
 window.EventBus = new Vue()
 
-require('./bind')
+require('./mixin')
