@@ -31,7 +31,7 @@ class BaseServiceProvider extends ServiceProvider
         view()->addNamespace('EmilMoe\Base', base_path('vendor/emilmoe/base/src/resources/views'));
 
         $this->mergeConfigFrom(
-            __DIR__.'/config/navigation.php', 'navigation'
+            __DIR__.'/config.php', 'base'
         );
     }
 }
