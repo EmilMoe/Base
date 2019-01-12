@@ -14,12 +14,16 @@
     </head>
     <body class="{{ $class['body'] ?? '' }}">
         <div id="app" v-cloak>
+            @include('EmilMoe\Navigation::left')
             <main>
                 @yield('page')
             </main>
             <footer>
             </footer>
-            <snackbar></snackbar>
+            <template
+                    v-if="Vue.options.components['snackbar']">
+                <snackbar></snackbar>
+            </template>
         </div>
 
         <script>
