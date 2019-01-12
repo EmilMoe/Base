@@ -16,7 +16,7 @@
     <body class="{{ $class['body'] ?? '' }}">
         <div id="app" v-cloak>
             @if(View::exists('EmilMoe\Navigation::left'))
-                @if(! isset($menu) && $menu !== false)
+                @if(! isset($menu) || $menu === true)
                     @include('EmilMoe\Navigation::left')
                 @endif
             @endif
