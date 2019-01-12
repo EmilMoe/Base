@@ -5,9 +5,9 @@ namespace EmilMoe\Base;
 class App
 {
     /**
-     * Core instance
+     * App instance
      *
-     * @var Core
+     * @var App
      */
     private static $instance;
 
@@ -34,7 +34,7 @@ class App
     public static function getInstance(): App
     {
         if (! isset(self::$instance)) {
-            self::$instance = new Core();
+            self::$instance = new App();
         }
 
         return self::$instance;
