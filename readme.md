@@ -1,4 +1,4 @@
-#### Base
+# Base
 
 This package will provide base structure to the Laravel project such as master templates and Vue EventBus and easy
 Vuex binding.
