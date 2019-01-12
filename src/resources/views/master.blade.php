@@ -23,7 +23,7 @@
 
             @if(View::exists('EmilMoe\Navigation::top'))
                 @if (! isset($menu) || $menu === true)
-                    @include('EmilMoe\Navigation::top')
+                    @include('EmilMoe\Navigation::top', ['logo' => \EmilMoe\Base\App::getInstance()->getLogo()])
                 @endif
             @endif
 
