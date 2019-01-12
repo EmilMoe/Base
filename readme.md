@@ -1,9 +1,45 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+#### Base
 
-Vue.use(Vuex)
+This package will provide base structure to the Laravel project such as master templates and Vue EventBus and easy
+Vuex binding.
 
-export const BaseStore = new Vuex.Store({
+### Install
+
+Before this package work, Vuex must be installed and the Vue app must be configured.
+
+### Vue app
+
+The Vue app must have the `bind` method addded:
+
+````
+const app = new Vue({
+    [...]
+    methods: {
+        /**
+         * Syntactic sugar for binding to Vuex dynamics binding.
+         *
+         * @param  {string} property Node to bind to
+         * @param  {mixed}  value    Value to assign
+         * @return {mixed}           Value that was assigned
+         */
+        bind(property, value = undefined) {
+            if (value === undefined)
+                return _.get(this.$store.state.bindings, property, null)
+
+            this.$store.commit('bind', [property, value])
+        }
+    },
+    [...]
+});
+````
+
+### Vuex
+
+The Vuex store must have the following methods addded:
+
+````
+export const store = new Vuex.Store({
+    [...]
     state: {
         bindings: {}
     },
@@ -44,11 +80,7 @@ export const BaseStore = new Vuex.Store({
             state.bindings = null
             state.bindings = Object.assign({}, tmp)
         }
-    },
-    actions: {
-
-    },
-    getters: {
-
     }
+    [...]
 })
+````

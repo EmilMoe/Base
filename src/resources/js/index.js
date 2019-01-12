@@ -6,7 +6,4 @@
 
 window.EventBus = new Vue()
 
-/**
- * Easy bind variables to the BaseStore
- */
 require('./bind')

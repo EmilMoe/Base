@@ -20,10 +20,6 @@
             </main>
             <footer>
             </footer>
-            <template
-                    v-if="Vue.options.components['snackbar']">
-                <snackbar></snackbar>
-            </template>
         </div>
 
         <script>
