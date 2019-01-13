@@ -19,6 +19,8 @@ class BaseServiceProvider extends ServiceProvider
         Event::listen('Base::logo', function($logo) {
             App::getInstance()->setLogo($logo);
         });
+        
+        $this->loadTranslationsFrom(__DIR__ .'/resources/lang', __NAMESPACE__);
     }
 
     /**
@@ -30,6 +32,5 @@ class BaseServiceProvider extends ServiceProvider
     {
         view()->addNamespace(__NAMESPACE__, base_path(__DIR__ .'/resources/views'));
         $this->mergeConfigFrom(__DIR__ .'/config.php', 'base');
-        $this->loadTranslationsFrom(__DIR__ .'/resources/lang', __NAMESPACE__);
     }
 }
