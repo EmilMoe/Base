@@ -2,7 +2,6 @@
 
 return [
     'empty' => [
-        'title'   => 'Der blev ikke fundet nogen :type',
-        'message' => 'Tryk her for at oprette.',
+        'title' => 'Der blev ikke fundet nogen :type',
     ],
 ];
