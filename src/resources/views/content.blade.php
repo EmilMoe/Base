@@ -15,6 +15,7 @@
                         'type' => $content['type']
                     ]) }}
                 </h3>
+                <br>
                 <p>
                     @yield('first')
                 </p>
