@@ -17,6 +17,8 @@
                 </h3>
                 <p>
                     {{ __('EmilMoe\Base::content.empty.message') }}
+
+                    @yield('first')
                 </p>
             </div>
         @else
