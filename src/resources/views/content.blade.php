@@ -18,7 +18,9 @@
                 <p>
                     {{ __('EmilMoe\Base::content.empty.message') }}
 
-                    @yield('first')
+                    <p>
+                        @yield('first')
+                    </p>
                 </p>
             </div>
         @else
