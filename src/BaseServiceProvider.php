@@ -28,10 +28,8 @@ class BaseServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        view()->addNamespace('EmilMoe\Base', base_path('vendor/emilmoe/base/src/resources/views'));
-
-        $this->mergeConfigFrom(
-            __DIR__.'/config.php', 'base'
-        );
+        view()->addNamespace(__NAMESPACE__, base_path(__DIR__ .'/resources/views'));
+        $this->mergeConfigFrom(__DIR__ .'/config.php', 'base');
+        $this->loadTranslationsFrom(__DIR__ .'/resources/lang', __NAMESPACE__);
     }
 }
