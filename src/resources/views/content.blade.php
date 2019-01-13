@@ -10,9 +10,13 @@
 
         @if(isset($hasContent) && ! $hasContent)
             <div align="center">
-                <h3>{{ __('content.empty.title') }}</h3>
+                <h3>
+                    {{ __('EmilMoe\Base::content.empty.title', [
+                        'type' => $content['type']
+                    ]) }}
+                </h3>
                 <p>
-                    {{ __('content.empty.message') }}
+                    {{ __('EmilMoe\Base::content.empty.message') }}
                 </p>
             </div>
         @else
