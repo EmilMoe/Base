@@ -2,7 +2,6 @@
 
 namespace EmilMoe\Base;
 
-use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Event;
 use EmilMoe\Base\App;
