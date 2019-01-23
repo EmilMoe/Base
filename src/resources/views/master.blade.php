@@ -8,6 +8,7 @@
         <link xmlns="https://www.w3.org/1999/xhtml" rel="shortcut icon" href="{{ url('images/logo.svg') }}">
         <link rel="manifest" href="{{ url('mix-manifest.json') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
         <title>{{ isset($pagename) ? $pagename : env('APP_NAME') }}</title>
 
