@@ -7,6 +7,8 @@ Vuex binding.
 
 Before this package work, Vuex must be installed and the Vue app must be configured.
 
+`npm install --save-dev vuex`
+
 ### Vue app
 
 The Vue app must be slightly modified:
