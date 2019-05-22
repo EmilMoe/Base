@@ -15,7 +15,7 @@
         <link href="{{ url(mix('css/app.css')) }}" rel="stylesheet">
     </head>
     <body class="{{ $class['body'] ?? '' }}">
-        <div id="app" v-cloak>
+        <div id="app" v-cloak class="marketing">
             @yield('header')
 
             <main>
