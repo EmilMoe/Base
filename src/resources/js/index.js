@@ -26,8 +26,6 @@ window.Vuex = store
 require('./bind')
 
 /**
- * Set language locale.
+ * Language support
  */
-window.lang = require('lang.js')
-window.lang.setLocale(_.get(window, ['Laravel', 'locale'], 'en'))
-window.lang.setFallback('en')
+require('./lang')

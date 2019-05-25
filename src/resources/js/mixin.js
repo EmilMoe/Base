@@ -43,10 +43,13 @@ Vue.mixin({
         /** 
          * Get translation.
          */
-        __(source, phrase) {
-            window.lang.setMessages(source)
+        __(phrase, source = null) {
+            let currentSource = window.lang.getSource()
+            window.lang.setSource(source)
+            let message = window.lang.get(phrase)
+            window.lang.setSource(curretnSource)
 
-            return window.lang.get(phrase)
+            return message
         }
     }
 })
