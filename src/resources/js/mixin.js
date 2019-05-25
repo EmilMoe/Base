@@ -31,6 +31,22 @@ Vue.mixin({
          */
         axios() {
             return window.axios
+        },
+        /**
+         * Language object.
+         */
+        lang() {
+            return window.lang
+        }
+    },
+    methods: {
+        /** 
+         * Get translation.
+         */
+        __(source, phrase) {
+            window.lang.setMessages(source)
+
+            return window.lang.get(phrase)
         }
     }
 })
