@@ -29,5 +29,5 @@ require('./bind')
  * Set language locale.
  */
 window.lang = require('lang.js')
-window.lang.setLocale(window.Laravel.locale ?? 'en')
+window.lang.setLocale(_.get(window, ['Laravel', 'locale'], null) ?? 'en')
 window.lang.setFallback('en')
