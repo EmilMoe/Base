@@ -24,8 +24,3 @@ window.Vuex = store
  * Easy bind variables to the store.
  */
 require('./bind')
-
-/**
- * Language support
- */
-Vue.use(require('vue-i18n'))
