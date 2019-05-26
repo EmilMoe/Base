@@ -31,29 +31,6 @@ Vue.mixin({
          */
         axios() {
             return window.axios
-        },
-        /**
-         * Language object.
-         */
-        lang() {
-            return window.lang
-        }
-    },
-    methods: {
-        /** 
-         * Get translation.
-         */
-        __(phrase, source = null) {
-            if (source === null) {
-                return window.lang.get(phrase)
-            }
-
-            let currentSource = window.lang.getSource()
-            window.lang.setSource(source)
-            let message = window.lang.get(phrase)
-            window.lang.setSource(curretnSource)
-
-            return message
         }
     }
 })
