@@ -44,6 +44,10 @@ Vue.mixin({
          * Get translation.
          */
         __(phrase, source = null) {
+            if (source === null) {
+                return window.lang.get(phrase)
+            }
+
             let currentSource = window.lang.getSource()
             window.lang.setSource(source)
             let message = window.lang.get(phrase)

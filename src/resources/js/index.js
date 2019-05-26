@@ -28,4 +28,4 @@ require('./bind')
 /**
  * Language support
  */
-require('./lang')
+Vue.use(require('vue-i18n'))
