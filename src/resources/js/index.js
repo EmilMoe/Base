@@ -7,6 +7,15 @@
 window.EventBus = new Vue()
 
 /**
+ * Set up moment.js
+ *
+ * @type {moment}
+ */
+
+window.moment = require('moment')
+window.moment.locale('da')
+
+/**
  * Utility mixin
  *
  * This mixin add shortcut to common methods accross the platform.

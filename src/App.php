@@ -2,6 +2,8 @@
 
 namespace EmilMoe\Base;
 
+use Illuminate\Support\ServiceProvider;
+
 class App
 {
     /**

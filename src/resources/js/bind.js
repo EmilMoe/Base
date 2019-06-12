@@ -21,6 +21,24 @@ Vue.mixin({
          */
         unbind(property) {
             this.$store.commit('unbind', property)
+        },
+        /**
+         * Is property bound.
+         *
+         * @param {string} property
+         * @return {bool}
+         */
+        hasBind(property) {
+            return this.bind(property) !== null
+        },
+        /**
+         * Alternate method name for hasBind().
+         *
+         * @param {string} property
+         * @return {bool}
+         */
+        isBound(property) {
+            return this.hasBind(property)
         }
     }
 })
@@ -49,8 +67,8 @@ Vue.use({
                 /**
                  * Delete a binding.
                  *
-                 * @param state
-                 * @param payload
+                 * @param {Object} state
+                 * @param {string} payload
                  */
                 unbind(state, payload) {
                     let bindings = state.bindings
@@ -65,8 +83,8 @@ Vue.use({
                 /**
                  * Refresh all bindings.
                  *
-                 * @param state
-                 * @param payload
+                 * @param {Object} state
+                 * @param {string} payload
                  */
                 refresh(state, payload) {
                     let tmp        = state.bindings

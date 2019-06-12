@@ -2,6 +2,7 @@
 
 namespace EmilMoe\Base;
 
+use Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Event;
 use EmilMoe\Base\App;
@@ -31,5 +32,13 @@ class BaseServiceProvider extends ServiceProvider
     {
         view()->addNamespace(__NAMESPACE__, __DIR__ .'/resources/views');
         $this->mergeConfigFrom(__DIR__ .'/config.php', 'base');
+
+        Blade::directive('module', function ($modules) {
+            return "<?php if(\EmilMoe\Base\Module::loaded($modules)): ?>";
+        });
+
+        Blade::directive('endmodule', function () {
+            return '<?php endif; ?>';
+        });
     }
 }

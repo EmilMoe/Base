@@ -31,6 +31,52 @@ Vue.mixin({
          */
         axios() {
             return window.axios
+        },
+        /**
+         * Get the moment.js instance.
+         *
+         * @return {moment}
+         */
+        moment() {
+            return window.moment
+        }
+    },
+    methods: {
+        /**
+         * Check if a module is loaded.
+         *
+         * @param {string} module
+         * @return {bool}
+         */
+        hasModule(module) {
+            return window.Laravel.modules.includes(module)
+        },
+        /**
+         * Return a number as locale formatted.
+         *
+         * @param {Number} number
+         * @param {String} format
+         * @param {Number} minFraction
+         * @returns {String}
+         */
+        toLocaleNumber(number, format = 'decimal', minFraction = null, maxFraction = null) {
+            if (Intl === undefined)
+                return number
+
+            if ((minFraction === null && number % 1 > 0) || isNaN(parseInt(minFraction)))
+                minFraction = 1
+
+            if (maxFraction === null || isNaN(parseInt(maxFraction)))
+                maxFraction = 10
+
+            if (format.toLowerCase() === 'percent')
+                number = number / 100
+
+            return new Intl.NumberFormat(window.Laravel.locale, {
+                style: format.toLowerCase(),
+                minimumFractionDigits: minFraction,
+                maximumFractionDigits: maxFraction,
+            }).format(number)
         }
     }
 })
