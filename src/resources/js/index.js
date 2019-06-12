@@ -33,3 +33,5 @@ window.Vuex = store
  * Easy bind variables to the store.
  */
 require('./bind')
+
+require('./components')

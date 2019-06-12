@@ -43,6 +43,18 @@ Vue.mixin({
     },
     methods: {
         /**
+         * Remove objects from array.
+         *
+         * @param {Array}  array
+         * @param {Array}  ids
+         * @param {String} identifier
+         */
+        _remove(array, ids, identifier = 'id') {
+            return array.filter(item => {
+                return ! ids.includes(item[identifier])
+            })
+        },
+        /**
          * Check if a module is loaded.
          *
          * @param {string} module
