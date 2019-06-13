@@ -6,6 +6,7 @@ use Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Event;
 use EmilMoe\Base\App;
+use Illuminate\Support\Facades\Schema;
 
 class BaseServiceProvider extends ServiceProvider
 {
@@ -16,6 +17,8 @@ class BaseServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultStringLength(191);
+        
         Event::listen('Base::logo', function($logo) {
             App::getInstance()->setLogo($logo);
         });
