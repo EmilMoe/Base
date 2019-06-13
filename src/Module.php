@@ -6,24 +6,6 @@ use Illuminate\Support\Collection;
 
 class Module
 {
-    private $navigation;
-    private static $instance;
-
-    public static function get()
-    {
-        if (! isset(self::$instance)) {
-            self::$instance = new Module;
-        }
-
-        return self::$instance;
-    }
-
-    private function __construct()
-    {
-
-        $this->navigation = collect([]);
-    }
-
     /**
      * Check if given module is loaded.
      *
@@ -63,21 +45,5 @@ class Module
         })->map(function ($loaded, $provider) use ($namespace) {
             return strtolower(explode('\\', $provider)[1]);
         })->unique()->sort()->flatten()->toArray();
-    }
-
-    public function addNavigation(array $args)
-    {
-        $this->navigation->push(new Navigation(
-            $args['text'],
-            $args['link'],
-            $args['icon'],
-            $args['backend'],
-            $args['active']
-        ));
-    }
-
-    public function getNavigation(): Collection
-    {
-        return $this->navigation;
     }
 }

@@ -1,25 +1,22 @@
 <ul class="nav flex-column">
+    @foreach(\EmilMoe\Base\Menu::all() as $nav)
+        <li class="nav-item">
+            <a class="{{ in_array(Route::currentRouteName(), $nav->active) ? 'active' : '' }} nav-link d-flex align-items-center" href="{{ call_user_func_array($nav->link[0], $nav->link[1] ?? []) }}">
+                {!! $nav->icon !!}
+                <div>
+                    {{ $nav->text }}
+                </div>
+            </a>
+        </li>
+    @endforeach
+</ul>
+<hr>
+<ul class="nav flex-column">
     <li class="nav-item">
         <a class="nav-link d-flex align-items-center" href="#">
             <i class="material-icons">dashboard</i>
             <div>
                 Forside
-            </div>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="{{ Route::currentRouteName() === 'users.index' ? 'active' : '' }} nav-link d-flex align-items-center" href="{{ route('users.index') }}">
-            <i class="material-icons">person</i>
-            <div>
-                Brugere
-            </div>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="{{ Route::currentRouteName() === 'teams.index' ? 'active' : '' }} nav-link d-flex align-items-center" href="{{ route('teams.index') }}">
-            <i class="material-icons">people</i>
-            <div>
-                Teams
             </div>
         </a>
     </li>
@@ -79,9 +76,6 @@
             </div>
         </a>
     </li>
-    <li>
-        <hr>
-    </li>
     <li class="nav-item">
         <a class="nav-link d-flex align-items-center" href="#">
             <i class="material-icons">chat_bubble</i>
@@ -91,25 +85,4 @@
             </div>
         </a>
     </li>
-    <li class="nav-item">
-        <a class="{{ Route::currentRouteName() === 'maintenance.index' ? 'active' : '' }} nav-link d-flex align-items-center" href="{{ route('maintenance.index') }}">
-            <i class="material-icons">build</i>
-            <div>
-                Maintenance
-            </div>
-        </a>
-    </li>
-</ul>
-<hr><hr>
-<ul class="nav flex-column">
-    @foreach(\EmilMoe\Base\Module::get()->getNavigation() as $navigation)
-        <li class="nav-item">
-            <a class="{{ $navigation->active(Route::currentRouteName()) ? 'active' : '' }} nav-link d-flex align-items-center" href="{{ $navigation->link() }}">
-                {!! $navigation->icon() !!}
-                <div>
-                    {{ $navigation->text() }}
-                </div>
-            </a>
-        </li>
-    @endforeach
 </ul>

@@ -32,6 +32,7 @@ class BaseServiceProvider extends ServiceProvider
     {
         view()->addNamespace(__NAMESPACE__, __DIR__ .'/resources/views');
         $this->mergeConfigFrom(__DIR__ .'/config.php', 'base');
+        $this->loadMigrationsFrom(__DIR__ .'/database/migrations');
 
         Blade::directive('module', function ($modules) {
             return "<?php if(\EmilMoe\Base\Module::loaded($modules)): ?>";

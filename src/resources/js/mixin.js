@@ -50,6 +50,10 @@ Vue.mixin({
          * @param {String} identifier
          */
         _remove(array, ids, identifier = 'id') {
+            if (ids.constructor !== Array) {
+                ids = [ids]
+            }
+
             return array.filter(item => {
                 return ! ids.includes(item[identifier])
             })
