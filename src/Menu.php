@@ -5,6 +5,7 @@ namespace EmilMoe\Base;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Schema;
 
 class Menu extends Model
 {
@@ -51,6 +52,10 @@ class Menu extends Model
      */
     public static function registerItem(string $text, string $icon, array $link, array $active, int $priority = null): void
     {
+        if (! Schema::hasTable(with(new static)->getTable())) {
+            return;
+        }
+
         $module = strtolower(explode('\\', debug_backtrace()[1]['class'])[1]);
 
         Menu::updateOrCreate([
