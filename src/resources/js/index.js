@@ -33,3 +33,8 @@ window.Vuex = store
  * Easy bind variables to the store.
  */
 require('./bind')
+
+/**
+ * Prevent Axios from making same GET request twice. 
+ */
+require('./AxiosCache')
