@@ -22,7 +22,6 @@ class CreateBaseMenuTable extends Migration
             $table->string('text')->comment('Fallback name when translations is missing');
             $table->string('link');
             $table->text('active');
-            $table->text('permissions');
             $table->timestamps();
         });
     }

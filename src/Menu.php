@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use EmilMoe\Permission\Permission;
+use Illuminate\Support\Facades\Event;
 
 class Menu extends Model
 {
@@ -26,7 +29,6 @@ class Menu extends Model
     protected $casts = [
         'active'      => 'array',
         'link'        => 'array',
-        'permissions' =>  'array',
     ];
 
     /**
@@ -42,7 +44,6 @@ class Menu extends Model
         'link',
         'active',
         'icon',
-        'permissions',
     ];
 
     /**
@@ -64,7 +65,7 @@ class Menu extends Model
 
         $module = strtolower(explode('\\', debug_backtrace()[1]['class'])[1]);
 
-        Menu::withoutGlobalScope('permitted')->updateOrCreate([
+        $menu = Menu::withoutGlobalScope('permitted')->updateOrCreate([
             'module' => $module,
             'key'     => $key,
         ], [
@@ -75,8 +76,12 @@ class Menu extends Model
             'icon'        => $icon,
             'link'        => $link,
             'active'      => $active,
-            'permissions' => $permissions,
         ]);
+
+        $menu->touch();
+
+        $menu->permissions()->detach();
+        $menu->permissions()->attach(Permission::whereIn('key', $permissions)->pluck('id'));
     }
 
     /**
@@ -107,17 +112,25 @@ class Menu extends Model
 
         static::addGlobalScope('permitted', function (Builder $builder) {
             if (! Auth::check()) {
-                $builder->where('permissions', '[]');
+                $builder->whereDoesntHave('permissions');
                 return;
             }
 
-            $builder->where(function ($query) {
-                $query->where('permissions', '[]');
-
-                collect(Auth::user()->permissions())->each(function ($permission) use ($query) {
-                    $query->orWhere('permissions', 'LIKE', '%"'. $permission .'"%');
-                });
-            });
+            $builder->whereHas('permissions', function($query) {
+                    $query->whereIn('key', Auth::user()->permissions());
+                })
+                ->orWhereDoesntHave('permissions');
         });
+    }
+
+    /**
+     * Permissions required to view the menu. Null means no requirements.
+     *
+     * @return BelongsToMany
+     */
+    public function permissions(): BelongsToMany
+    {
+        return $this->belongsToMany(Permission::class, 'base_menu_permission', 'base_menu_id')
+            ->withTimestamps();
     }
 }
