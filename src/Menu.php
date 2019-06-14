@@ -116,6 +116,10 @@ class Menu extends Model
                 return;
             }
 
+            if (Auth::user()->is_admin) {
+                return;
+            }
+
             $builder->whereHas('permissions', function($query) {
                     $query->whereIn('key', Auth::user()->permissions());
                 })
