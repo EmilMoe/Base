@@ -16,11 +16,13 @@ class CreateBaseMenuTable extends Migration
         Schema::create('base_menu', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('module')->comment('Module that installed the menu item');
+            $table->bigInteger('key');
             $table->integer('priority')->comment('Lowest first');
             $table->string('icon');
             $table->string('text')->comment('Fallback name when translations is missing');
             $table->string('link');
             $table->text('active');
+            $table->text('permissions');
             $table->timestamps();
         });
     }

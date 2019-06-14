@@ -1,18 +1,6 @@
 @extends('EmilMoe\Base::master')
 
 @section('site')
-    @if(View::exists('EmilMoe\Navigation::left'))
-        @if(! isset($menu) || $menu === true)
-            @include('EmilMoe\Navigation::left')
-        @endif
-    @endif
-
-    @if(View::exists('EmilMoe\Navigation::top'))
-        @if (! isset($menu) || $menu === true)
-            @include('EmilMoe\Navigation::top', ['logo' => \EmilMoe\Base\App::getInstance()->getLogo()])
-        @endif
-    @endif
-
     @include('EmilMoe\Base::navbar')
 
     <div class="container-fluid">

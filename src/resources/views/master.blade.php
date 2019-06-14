@@ -18,14 +18,18 @@
         </div>
 
         <script>
-            window.Laravel = <?php echo json_encode(array_merge([
+            window.Laravel = <?php echo json_encode(array_merge(array_merge([
                 'baseUrl'   => url('/'),
                 'locale'    => config('app.locale'),
-                'user'      => [
-                    'roles' => method_exists(\Auth::user(), 'roles') ? \Auth::user()->roles()->get() : [],
-                ],
                 'modules'   => \EmilMoe\Base\Module::list(),
-            ], env('APP_DEBUG') ? ['debug' => true] : [])); ?>
+            ], env('APP_DEBUG') ? ['debug' => true] : [])
+            , ! \Auth::user() ? [] : [
+                'user' => [
+                    'permissions' => method_exists(\Auth::user(), 'permissions') ? \Auth::user()->permissions() : [],
+                    'id' => \Auth::id(),
+                    'admin' => \Auth::user()->is_admin
+                ]
+            ])); ?>
         </script>
         @yield('script')
         <script src="//cdn.polyfill.io/v2/polyfill.min.js"></script>

@@ -24,6 +24,30 @@ class BaseServiceProvider extends ServiceProvider
         });
 
         $this->loadTranslationsFrom(__DIR__ .'/resources/lang', __NAMESPACE__);
+
+        Menu::registerItem(
+            1560461837,
+            'Menu',
+            '<i class="material-icons">sort</i>',
+            ['route', ['base.menu.index']],
+            ['base.menu.index']
+        );
+
+        Menu::registerItem(
+            1560461838,
+            'Designer',
+            '<i class="fas fa-drafting-compass"></i>',
+            ['url', ['#']],
+            []
+        );
+
+        Blade::directive('module', function ($modules) {
+            return "<?php if(\EmilMoe\Base\Module::loaded($modules)): ?>";
+        });
+
+        Blade::directive('endmodule', function () {
+            return '<?php endif; ?>';
+        });
     }
 
     /**
@@ -36,13 +60,6 @@ class BaseServiceProvider extends ServiceProvider
         view()->addNamespace(__NAMESPACE__, __DIR__ .'/resources/views');
         $this->mergeConfigFrom(__DIR__ .'/config.php', 'base');
         $this->loadMigrationsFrom(__DIR__ .'/database/migrations');
-
-        Blade::directive('module', function ($modules) {
-            return "<?php if(\EmilMoe\Base\Module::loaded($modules)): ?>";
-        });
-
-        Blade::directive('endmodule', function () {
-            return '<?php endif; ?>';
-        });
+        $this->loadRoutesFrom(__DIR__ .'/routes/web.php');
     }
 }

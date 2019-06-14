@@ -29,6 +29,10 @@ import { store } from './store'
 
 window.Vuex = store
 
+if (_.get(window, ['Laravel', 'user'], false)) {
+    window.Vuex.state.user = window.Laravel.user
+}
+
 /**
  * Easy bind variables to the store.
  */
