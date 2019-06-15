@@ -29,15 +29,6 @@ class BaseServiceProvider extends ServiceProvider
 
         Event::listen('base.menu.update', function($menu) {
             $menu::registerItem(
-                1560461837,
-                'Menu',
-                '<i class="material-icons">sort</i>',
-                ['route', ['base.menu.index']],
-                ['base.menu.index'],
-                []
-            );
-
-            $menu::registerItem(
                 1560461838,
                 'Designer',
                 '<i class="fas fa-drafting-compass"></i>',
