@@ -13,7 +13,7 @@
     </head>
     <body class="{{ $class['body'] ?? '' }}">
 
-        <div id="app" v-cloak>
+        <div id="app">
             @yield('site')
         </div>
 

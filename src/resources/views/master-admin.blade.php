@@ -27,7 +27,9 @@
                     </div>
                 @endif
                 
-                @yield('page')
+                <div id="loader-container">
+                    @yield('page')
+                </div>
             </div>
         </div>
     </div>
