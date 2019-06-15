@@ -13,14 +13,14 @@ class Cleanup extends Command
      *
      * @var string
      */
-    protected $signature = 'base:cleanup';
+    protected $signature = 'cleanup';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Update menu entries.';
+    protected $description = 'Update menu entries and call other cleaners.';
 
     /**
      * Create a new command instance.
@@ -41,5 +41,6 @@ class Cleanup extends Command
     {
         event('base.menu.update', Menu::class);
         Menu::where('updated_at', '<', Carbon::now()->subMinutes(15))->delete();
+        event('base.cleanup');
     }
 }

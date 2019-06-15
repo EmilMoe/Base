@@ -47,7 +47,7 @@ class BaseServiceProvider extends ServiceProvider
 
         $this->app->booted(function () {
             $schedule = $this->app->make(Schedule::class);
-            $schedule->command('base:cleanup')->hourly();
+            $schedule->command('cleanup')->hourly();
         });
     }
 
