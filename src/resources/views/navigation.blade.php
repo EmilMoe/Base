@@ -1,4 +1,4 @@
-<ul class="nav flex-column">
+<ul class="nav flex-column d-sm-none d-md-block">
     @foreach(\EmilMoe\Base\Menu::all() as $nav)
         <li class="nav-item">
             <a class="{{ in_array(Route::currentRouteName(), $nav->active) ? 'active' : '' }} nav-link d-flex align-items-center" href="{{ call_user_func_array($nav->link[0], $nav->link[1] ?? []) }}">
@@ -10,7 +10,7 @@
         </li>
     @endforeach
 </ul>
-<hr>
+{{--<hr>
 <ul class="nav flex-column">
     <li class="nav-item">
         <a class="nav-link d-flex align-items-center" href="#">
@@ -85,4 +85,4 @@
             </div>
         </a>
     </li>
-</ul>
+</ul>--}}

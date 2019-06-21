@@ -27,16 +27,6 @@ class BaseServiceProvider extends ServiceProvider
 
         $this->loadTranslationsFrom(__DIR__ .'/resources/lang', __NAMESPACE__);
 
-        Event::listen('base.menu.update', function($menu) {
-            $menu::registerItem(
-                1560461838,
-                'Designer',
-                '<i class="fas fa-drafting-compass"></i>',
-                ['url', ['#']],
-                []
-            );
-        });
-
         Blade::directive('module', function ($modules) {
             return "<?php if(\EmilMoe\Base\Module::loaded($modules)): ?>";
         });
