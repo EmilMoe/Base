@@ -8,7 +8,7 @@
             <div class="col-xl-2 offset-xl-1 col-md-2">
                 @include('EmilMoe\Base::navigation')
             </div>
-            <div class="col-xl-8 col">
+            <div class="col-xl-8 col-md-10">
                 @if(isset($pagetitle))
                     <div class="row">
                         <div class="col">

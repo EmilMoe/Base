@@ -41,7 +41,9 @@ require('./bind')
 /**
  * Prevent Axios from making same GET request twice. 
  */
-require('./AxiosCache')
+if (window.axios) {
+    require('./AxiosCache')
+}
 
 /**
  * Load Bootstrap and jQuery
