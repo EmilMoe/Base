@@ -33,6 +33,7 @@
         </script>
         @yield('script')
         <script src="//cdn.polyfill.io/v2/polyfill.min.js"></script>
+        <script src="{{ url('/js/lang.js') }}"></script>
         <script src="{{ url(mix('js/app.js')) }}"></script>
     </body>
 </html>

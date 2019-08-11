@@ -48,6 +48,10 @@ if (window.axios) {
 /**
  * Load Bootstrap and jQuery
  */
-window.$ = window.jQuery = require('jquery');
-require('bootstrap');
+window.$ = window.jQuery = require('jquery')
+require('bootstrap')
 
+/**
+ * Support for paramterized language strings in JavaScript.
+ */
+require('./lang.js')
