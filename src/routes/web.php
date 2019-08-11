@@ -35,8 +35,8 @@ Route::get('/js/lang.js', function () {
             $namespace = $collection['namespace'];
 
             foreach ($collection['file'] as $file) {
-                $name                              = basename($file, '.php');
-                $strings[$namespace .'.'. $name][] = require $file;
+                $name                         = basename($file, '.php');
+                $strings[$namespace][$name] = require $file;
             }
         }
 
