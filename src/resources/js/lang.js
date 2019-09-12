@@ -1,4 +1,4 @@
-Vue.prototype.trans = (string, args) => {
+Vue.prototype.get = (string, args) => {
     let value = _.get(window.i18n, string)
 
     _.eachRight(args, (paramVal, paramKey) => {
