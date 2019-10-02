@@ -122,8 +122,8 @@ class Menu extends Model
 
             $builder->whereHas('permissions', function($query) {
                     $query->whereIn('key', Auth::user()->permissions());
-                })
-                ->orWhereDoesntHave('permissions');
+                });
+                #->orWhereDoesntHave('permissions');
         });
     }
 
