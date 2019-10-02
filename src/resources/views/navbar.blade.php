@@ -8,11 +8,7 @@
 
             {{-- Logo --}}
             <span class="navbar-brand mb-0 h1">
-            @if(file_exists(public_path(config('base.logo'))))
-                    <img src="{{ url(config('base.logo')) }}" alt="">
-                @else
-                    {{ env('APP_NAME') }}
-                @endif
+                <img src="{{ config('app.logo') }}" alt="">
             </span>
         </div>
 

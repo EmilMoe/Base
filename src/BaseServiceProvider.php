@@ -2,13 +2,14 @@
 
 namespace EmilMoe\Base;
 
-use Blade;
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Support\Facades\Event;
-use EmilMoe\Base\App;
-use Illuminate\Support\Facades\Schema;
 use EmilMoe\Base\Console\Commands\Cleanup;
+use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\ServiceProvider;
 
 class BaseServiceProvider extends ServiceProvider
 {
@@ -20,9 +21,9 @@ class BaseServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        
+
         Event::listen('Base::logo', function($logo) {
-            App::getInstance()->setLogo($logo);
+            return config('app.logo');
         });
 
         $this->loadTranslationsFrom(__DIR__ .'/resources/lang', __NAMESPACE__);
@@ -49,7 +50,6 @@ class BaseServiceProvider extends ServiceProvider
     public function register()
     {
         view()->addNamespace(__NAMESPACE__, __DIR__ .'/resources/views');
-        $this->mergeConfigFrom(__DIR__ .'/config.php', 'base');
         $this->loadMigrationsFrom(__DIR__ .'/database/migrations');
         $this->loadRoutesFrom(__DIR__ .'/routes/web.php');
         $this->commands([
