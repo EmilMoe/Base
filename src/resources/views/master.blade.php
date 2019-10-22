@@ -20,14 +20,13 @@
         <script>
             window.Laravel = <?php echo json_encode(array_merge(array_merge([
                 'baseUrl'   => url('/'),
-                'locale'    => config('app.locale'),
-                'modules'   => \EmilMoe\Base\Module::list(),
+                'locale'    => \Illuminate\Support\Facades\App::getLocale(),
             ], env('APP_DEBUG') ? ['debug' => true] : [])
             , ! \Auth::user() ? [] : [
                 'user' => [
-                    'permissions' => method_exists(\Auth::user(), 'permissions') ? \Auth::user()->permissions() : [],
                     'id' => \Auth::id(),
-                    'admin' => \Auth::user()->is_admin
+                    'permissions' => call_user_func(config('base.permission_keys_callback'), Auth::user()) ?? [],
+                    'admin' => \Auth::user()->{config('base.admin_attribute')}
                 ]
             ])); ?>
         </script>

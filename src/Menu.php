@@ -118,7 +118,7 @@ class Menu extends Model
             }
 
             if (config('base.admin_attribute')) {
-                if (call_user_func_array([Auth::user(), config('base.admin_attribute')], [])) {
+                if (Auth::user()->{config('base.admin_attribute')}) {
                     return;
                 }
             }

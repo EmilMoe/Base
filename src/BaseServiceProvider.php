@@ -22,10 +22,6 @@ class BaseServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        Event::listen('Base::logo', function($logo) {
-            return config('app.logo');
-        });
-
         $this->loadTranslationsFrom(__DIR__ .'/resources/lang', __NAMESPACE__);
 
         Blade::directive('module', function ($modules) {
