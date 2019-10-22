@@ -15,7 +15,7 @@ Route::get('/js/lang.js', function () {
         Cache::forget('lang-'. config('app.locale')  .'.js');
     }
 
-    $strings = Cache::rememberForever('lang-'. config('app.locale')  .'.js', function() use($paths) {
+    $strings = Cache::remember('lang-'. config('app.locale')  .'.js', 5, function() use($paths) {
         $lang = config('app.locale');
 
         $collections = [];
