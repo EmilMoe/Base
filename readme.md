@@ -1,25 +1,5 @@
 # Base
 
-This package will provide base structure to the Laravel project such as master templates and Vue EventBus and easy
-Vuex binding.
+Base is a package for Laravel delivering essential features for getting up and running. It can be used for any kind of project though it has been mainly developed as for a backend or admin site. It will bootstrap many features such as Vue and Vuex out of the box for you.
 
-### Install
-
-Before this package work, Vuex must be installed and the Vue app must be configured.
-
-`npm install --save-dev vuex`
-
-### Vue app
-
-The Vue app must be slightly modified:
-
-````
-store = window.Vuex
-
-[..]
-
-const app = new Vue({
-    el: '#app',
-    store
-});
-````
+For more information and how to install look at https://emil.moe/packages-base/
