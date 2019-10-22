@@ -14,7 +14,7 @@
 
         {{-- Avatar on mobile --}}
         <div class="nav-item dropdown my-2 my-lg-0 d-block d-md-none">
-            @include('EmilMoe\Base::admin.user-menu')
+            @include('EmilMoe\Base::snippets.user-menu')
         </div>
 
         {{-- Menu --}}
@@ -35,7 +35,7 @@
 
         {{-- Avatar on desktop --}}
         <div class="nav-item dropdown my-2 my-lg-0 d-none d-md-block">
-            @include('EmilMoe\Base::admin.user-menu')
+            @include('EmilMoe\Base::snippets.user-menu')
         </div>
     </div>
 </nav>

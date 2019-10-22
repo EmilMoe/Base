@@ -32,7 +32,9 @@
             ])); ?>
         </script>
         @yield('script')
-        <script src="//cdn.polyfill.io/v2/polyfill.min.js"></script>
+        @if(env('APP_ENV') !== 'local')
+            <script src="//cdn.polyfill.io/v2/polyfill.min.js"></script>
+        @endif
         <script src="{{ url('/js/lang.js') }}"></script>
         <script src="{{ url(mix('js/app.js')) }}"></script>
     </body>

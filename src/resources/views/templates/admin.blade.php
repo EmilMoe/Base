@@ -2,12 +2,12 @@
 
 @section('site')
     <div class="page-container">
-        @include('EmilMoe\Base::navbar')
+        @include('EmilMoe\Base::snippets.navbar')
 
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xl-2 offset-xl-1 col-md-2">
-                    @include('EmilMoe\Base::navigation')
+                    @include('EmilMoe\Base::snippets.navigation')
                 </div>
                 <div class="col-xl-8 col-md-10">
                     @if(isset($pagetitle))
@@ -23,7 +23,7 @@
                     @if(isset($breadcrumb) && is_array($breadcrumb))
                         <div class="row">
                             <div class="col">
-                                @include('EmilMoe\Base::breadcrumb')
+                                @include('EmilMoe\Base::snippets.breadcrumb')
                             </div>
                         </div>
                     @endif
@@ -35,6 +35,6 @@
             </div>
         </div>
 
-        @include('EmilMoe\Base::footer')
+        @include('EmilMoe\Base::snippets.footer')
     </div>
 @endsection
