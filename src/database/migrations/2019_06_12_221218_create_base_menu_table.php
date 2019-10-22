@@ -16,12 +16,13 @@ class CreateBaseMenuTable extends Migration
         Schema::create('base_menu', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('module')->comment('Module that installed the menu item');
-            $table->bigInteger('key');
+            $table->bigInteger('key')->comment('Unique key to the entry');
             $table->integer('priority')->comment('Lowest first');
-            $table->string('icon');
+            $table->string('icon')->comment('HTML to parse icons');
             $table->string('text')->comment('Fallback name when translations is missing');
-            $table->string('link');
-            $table->text('active');
+            $table->string('link')->('Route or URL method menu leading to');
+            $table->text('active')->comment('Routes that renders the menu active');
+            $table->text('permissions')->nullable()->comment('Permission key strings to see the entry');
             $table->timestamps();
         });
     }

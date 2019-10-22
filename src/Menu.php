@@ -29,6 +29,7 @@ class Menu extends Model
     protected $casts = [
         'active'      => 'array',
         'link'        => 'array',
+        'permissions' => 'array',
     ];
 
     /**
@@ -44,6 +45,7 @@ class Menu extends Model
         'link',
         'active',
         'icon',
+        'permissions',
     ];
 
     /**
@@ -76,12 +78,10 @@ class Menu extends Model
             'icon'        => $icon,
             'link'        => $link,
             'active'      => $active,
+            'permissions' => $permissions,
         ]);
 
         $menu->touch();
-
-        $menu->permissions()->detach();
-        $menu->permissions()->attach(Permission::whereIn('key', $permissions)->pluck('id'));
     }
 
     /**
@@ -112,29 +112,26 @@ class Menu extends Model
 
         static::addGlobalScope('permitted', function (Builder $builder) {
             if (! Auth::check()) {
-                $builder->whereDoesntHave('permissions');
+                $builder->where('permissions', '[]');
+
                 return;
             }
 
-            if (Auth::user()->is_admin) {
-                return;
+            if (config('base.admin_attribute')) {
+                if (call_user_func_array([Auth::user(), config('base.admin_attribute')], [])) {
+                    return;
+                }
             }
 
-            $builder->whereHas('permissions', function($query) {
-                    $query->whereIn('key', Auth::user()->permissions());
+            if (config('base.permission_keys_callback')) {
+                $builder->where(function($query) {
+                    $keys = call_user_func(config('base.permission_keys_callback'), Auth::user());
+
+                    foreach ($keys as $key) {
+                        $query->orWhere('permissions', 'LIKE', '%"'. $key .'"%');
+                    }
                 });
-                #->orWhereDoesntHave('permissions');
+            }
         });
-    }
-
-    /**
-     * Permissions required to view the menu. Null means no requirements.
-     *
-     * @return BelongsToMany
-     */
-    public function permissions(): BelongsToMany
-    {
-        return $this->belongsToMany(Permission::class, 'base_menu_permission', 'base_menu_id')
-            ->withTimestamps();
     }
 }

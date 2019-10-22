@@ -55,5 +55,9 @@ class BaseServiceProvider extends ServiceProvider
         $this->commands([
             Cleanup::class,
         ]);
+        $this->mergeConfigFrom(__DIR__ .'/config.php', 'base');
+        $this->publishes([
+            __DIR__ .'/config.php' => config_path('base.php'),
+        ]);
     }
 }
