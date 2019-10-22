@@ -1,6 +1,7 @@
 <?php
 
 use EmilMoe\Base\Language;
+use \Illuminate\Support\Facades\App;
 
 /**
  * Web route configuration.
@@ -12,11 +13,11 @@ Route::get('/js/lang.js', function () {
     event('base.translation.update', $paths);
 
     if (env('APP_ENV','none') === 'local') {
-        Cache::forget('lang-'. config('app.locale')  .'.js');
+        Cache::forget('lang-'. App::getLocale()  .'.js');
     }
 
-    $strings = Cache::remember('lang-'. config('app.locale')  .'.js', 5, function() use($paths) {
-        $lang = config('app.locale');
+    $strings = Cache::remember('lang-'. App::getLocale()  .'.js', 5, function() use($paths) {
+        $lang = App::getLocale();
 
         $collections = [];
 
