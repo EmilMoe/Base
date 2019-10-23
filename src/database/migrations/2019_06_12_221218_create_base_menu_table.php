@@ -20,7 +20,7 @@ class CreateBaseMenuTable extends Migration
             $table->integer('priority')->comment('Lowest first');
             $table->string('icon')->comment('HTML to parse icons');
             $table->string('text')->comment('Fallback name when translations is missing');
-            $table->string('link')->('Route or URL method menu leading to');
+            $table->string('link')->comment('Route or URL method menu leading to');
             $table->text('active')->comment('Routes that renders the menu active');
             $table->text('permissions')->nullable()->comment('Permission key strings to see the entry');
             $table->timestamps();
