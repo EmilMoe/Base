@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link href="{{ url(mix('css/app.css')) }}" rel="stylesheet">
         <title>{{ isset($pagename) ? $pagename : config('app.name') }}</title>
+        @yield('head')
     </head>
     <body class="{{ $class['body'] ?? '' }}">
         @yield('site')
