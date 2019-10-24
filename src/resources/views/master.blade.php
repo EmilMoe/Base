@@ -12,11 +12,7 @@
         <title>{{ isset($pagename) ? $pagename : config('app.name') }}</title>
     </head>
     <body class="{{ $class['body'] ?? '' }}">
-
-        <div id="app">
-            @yield('site')
-        </div>
-
+        @yield('site')
         <script>
             window.Laravel = <?php echo json_encode(array_merge(array_merge([
                 'baseUrl'   => url('/'),
