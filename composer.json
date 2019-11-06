@@ -31,8 +31,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "EmilMoe\\Base\\BaseServiceProvider",
-                "Overtrue\\LaravelLang\\TranslationServiceProvider"
+                "EmilMoe\\Base\\BaseServiceProvider"
             ]
         },
         "emilmoe": {
