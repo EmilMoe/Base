@@ -36,7 +36,7 @@ if (_.get(window, ['Laravel', 'user'], false)) {
 /**
  * Easy bind variables to the store.
  */
-require('./bind')
+//require('./bind')
 
 /**
  * Prevent Axios from making same GET request twice. 
